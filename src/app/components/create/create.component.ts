@@ -21,19 +21,18 @@ export class CreateComponent implements OnInit {
   cusComment:string="";
   prodPrice:number=0;
 
+  //2. try with observable,subject and subscription
   sendData(): void {
     this.receiptdataService.sendData2(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice);
     console.log(this.receiptdataService.receipts)
   }
-  inputData(){
-    this.receiptdataService.addNewReceipt(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice)
-    console.log(this.receiptdataService.receipts)
-  }
 
+  // my first try
 
-//yt vidi
-
-
+  // inputData(){
+  //   this.receiptdataService.addNewReceipt(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice)
+  //   console.log(this.receiptdataService.receipts)
+  // }
 
 // clearData(): void {
 //   // clear data

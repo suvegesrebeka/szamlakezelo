@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
 import { ReceiptdataService } from 'src/app/receiptdata.service';
-import { Subscription ,Observable,Subject } from 'rxjs';
+import { Subscription, Observable, Subject } from 'rxjs';
 
 
 @Component({
@@ -15,28 +15,21 @@ import { Subscription ,Observable,Subject } from 'rxjs';
 export class CheckComponent implements OnInit {
 
   subscription: Subscription;
-  receipt:any[]=[]
-  constructor(private router: Router,private receiptdataService: ReceiptdataService) { 
+  receipt: any[] = [];
 
-  // subscribe to create component data
-  this.subscription = this.receiptdataService.getData().subscribe(res => {
-    if (res) {
-      console.log(res)
+  constructor(private router: Router, private receiptdataService: ReceiptdataService) {
+
+    // subscribe to create component data
+    this.subscription = this.receiptdataService.getData().subscribe(res => {
+      if (res) {
+        console.log(res)
         this.receipt.push(res);
-    }
-});
+      }
+    });
   }
 
- 
-  // receipt:{
-  // cusName:string;
-  // buyDate:string;
-  // realDate:string;
-  // product:string;
-  // cusComment:string;
-  // prodPrice:number}[]=[]
 
   ngOnInit(): void {
   }
-ember:any[] = [1,'Sós Barka','1999-12-30','2000-12-30','tétel','no komment',213212]
+  // ember: any[] = [1, 'Sós Barka', '1999-12-30', '2000-12-30', 'tétel', 'no komment', 213212]
 }
