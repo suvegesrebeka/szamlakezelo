@@ -1,0 +1,9 @@
+th {
+    padding:1%;
+    text-align: left;
+    background-color: #975353;
+    color: rgb(240, 240, 240);
+    
+  }
+  tr:nth-child(even){background-color: #f2f2f2;}
+  td{padding: 1%;}
