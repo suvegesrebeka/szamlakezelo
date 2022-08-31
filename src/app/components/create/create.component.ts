@@ -17,23 +17,8 @@ export class CreateComponent implements OnInit {
 
   }
 
-  cusName: string = "";
-  buyDate: string = "";
-  realDate: string = "";
-  product: string = "";
-  cusComment: string = "";
-  prodPrice: number = 0;
-
-
-  @Output() sendObject = new EventEmitter();
-
-  recieptall!: { cusName: string, buyDate: string, realDate: string, product: string, cusComment: string, prodPrice: number };
-
 
   sendData(value: any): void {
-    // for (const [key, val] of Object.entries(value)) {
-    //   console.log(`${key}: ${val}`);
-    // }
     this.receiptdataService.showReceipt(value);
   }
 
