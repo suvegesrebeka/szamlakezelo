@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,EventEmitter,Output } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
@@ -12,10 +12,14 @@ import { Subscription ,Observable,Subject } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+@Input()receiptall:any[]=[];
+  recieveMessage(...value:any){
+    this.receiptall=value;
+  }
   constructor(private router: Router,private receiptdata: ReceiptdataService) { }
 
   ngOnInit(): void {
+    this.receiptall.forEach((e:any)=>console.log(e+"parent"))
   }
 
 }

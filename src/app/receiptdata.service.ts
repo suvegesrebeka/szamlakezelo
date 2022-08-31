@@ -9,20 +9,16 @@ export class ReceiptdataService {
 
   private sourceBehav = new BehaviorSubject<any>(null);
   public behaveiorSubject$ = this.sourceBehav.asObservable();
-
+  
+  showReceipt(value: any) {
+    this.sourceBehav.next(value)
+  }
 
   constructor() {
   }
 
-  receipts: any = []
-
-  showReceipt(value: any) {
-    for (const [key, val] of Object.entries(value)) {
-      console.log(`${key}: ${val}`);
-    }
-    this.sourceBehav.next(value)
-
-  }
+ 
+  
 
 
 

@@ -9,10 +9,25 @@
         <th>Komment</th>
         <th>Ár</th>
    <tr>
-    <tr >
-        <td *ngFor="let items of receipt">{{items}}</td>
+    <tr *ngFor="let item of receipts;let i = index" >
+        <td>i+1</td>
+        <td>{{item.name}}</td>
+        <td >{{item.date}}</td>
+        <td >{{item.date2}}</td>
+        <td >{{item.item}}</td>
+        <td >{{item.comment}}</td>
+        <td >{{item.price}}</td>
     </tr>
+    
   
 </table>
-
 <button routerLink="../create" class="btn btn-outline-danger"> Új számla kiállítása</button>
+<div *ngFor="let items of receipts;let i = index">       
+    <p>i+1</p>
+    <p>{{items.name}}</p>
+    <p >{{items.date}}</p>
+    <p >{{items.date2}}</p>
+    <p >{{items.item}}</p>
+    <p >{{items.comment}}</p>
+    <p >{{items.price}}</p>
+</div>

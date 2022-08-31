@@ -24,6 +24,7 @@ import { UniqueComponent } from './components/unique/unique.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {  RouterModule } from '@angular/router';
+import { ReceiptdataService } from './receiptdata.service';
 
 
 
@@ -57,7 +58,7 @@ import {  RouterModule } from '@angular/router';
     NgxCaptchaModule,
     RouterModule
   ],
-  providers: [],
+  providers: [ReceiptdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,10 @@
 <div>
   <h2 class="display-6">Állítson elő számlát:</h2>
-  <form [formGroup]="receiptform" #save="ngForm" (ngSubmit)="onSubmit(save.value)"action="POST">
+  <form [formGroup]="receiptform" #save="ngForm" (ngSubmit)="onSubmit(save.value)" action="POST">
     <ul>
       <li>
         <label for="cusName" class="form-label">Vásárló neve</label>
-        <input formControlName="name" type="text" class="form-control" id="cusName" [(ngModel)]="cusName">
+        <input formControlName="name" type="text" class="form-control" id="cusName" #nameval>
       </li>
       <span *ngIf=" name!.invalid && (name!.dirty || name!.touched)">
         <span [ngStyle]="{'color':'red'}" *ngIf="name!.errors?.['required']">
@@ -16,7 +16,7 @@
       </span>
       <li>
         <label for="date" class="form-label">Kiállítás dátuma</label>
-        <input formControlName="date" [max]="maxDate" type="date" class="form-control" id="date" [(ngModel)]="buyDate">
+        <input formControlName="date" [max]="maxDate" type="date" class="form-control" id="date">
       </li>
       <span *ngIf=" date!.invalid && (date!.dirty || date!.touched)">
         <span [ngStyle]="{'color':'red'}" *ngIf="date!.errors?.['required']">
@@ -25,7 +25,7 @@
       </span>
       <li>
         <label for="date" class="form-label">Esedékesség dátuma</label>
-        <input formControlName="date2" type="date" class="form-control" id="date" [(ngModel)]="realDate">
+        <input formControlName="date2" type="date" class="form-control" id="date">
       </li>
       <span *ngIf=" date2!.invalid && (date2!.dirty || date2!.touched)">
         <span [ngStyle]="{'color':'red'}" *ngIf="date2!.errors?.['required']">
@@ -34,7 +34,7 @@
       </span>
       <li>
         <label for="item" class="form-label">Tétel neve</label>
-        <input formControlName="item" type="text" class="form-control" id="item" [(ngModel)]="product">
+        <input formControlName="item" type="text" class="form-control" id="item">
       </li>
       <span *ngIf=" item!.invalid && (item!.dirty || item!.touched)">
         <span [ngStyle]="{'color':'red'}" *ngIf="item!.errors?.['required']">
@@ -43,7 +43,7 @@
       </span>
       <li>
         <label for="comment">Komment</label>
-        <textarea formControlName="comment"class="form-control" id="comment" [(ngModel)]="cusComment"></textarea>
+        <textarea formControlName="comment" class="form-control" id="comment"></textarea>
       </li>
       <span *ngIf=" comment!.invalid && (comment!.dirty || comment!.touched)">
         <span [ngStyle]="{'color':'red'}" *ngIf="comment!.errors?.['required']">
@@ -52,8 +52,8 @@
       </span>
       <li>
         <label for="price">Ár</label>
-        <span style="width:30%"class="input-group mb-3">
-          <input formControlName="price" type="number" min=1 class="form-control" id="price" [(ngModel)]="prodPrice">
+        <span style="width:30%" class="input-group mb-3">
+          <input formControlName="price" type="number" min=1 class="form-control" id="price">
           <span class="input-group-text">,-Ft</span>
         </span>
       </li>
@@ -63,8 +63,10 @@
         </span>
 
       </span>
-      <button (click)="sendData()" [disabled]="!receiptform.valid" type="submit" class=" btn btn-outline-success">Mentés</button>
+      <button (click)="sendData(save.value)" [disabled]="!receiptform.valid" type="submit"
+        class=" btn btn-outline-success">Mentés</button>
       <button routerLink="../subscription" class="mx-3 btn btn-outline-secondary">Visszalépés</button>
+
     </ul>
   </form>
 </div>

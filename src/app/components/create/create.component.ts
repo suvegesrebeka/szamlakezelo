@@ -1,51 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
 import { ReceiptdataService } from 'src/app/receiptdata.service';
-import { Subscription ,Observable,Subject } from 'rxjs';
+import { Subscription, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css'],
-  providers: [ReceiptdataService]
 })
 export class CreateComponent implements OnInit {
-//service datapass
-  cusName:string="";
-  buyDate:string="";
-  realDate:string="";
-  product:string="";
-  cusComment:string="";
-  prodPrice:number=0;
-
-  //2. try with observable,subject and subscription
-  sendData(): void {
-    this.receiptdataService.sendData2(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice);
-    console.log(this.receiptdataService.receipts)
-  }
-
-  // my first try
-
-  // inputData(){
-  //   this.receiptdataService.addNewReceipt(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice)
-  //   console.log(this.receiptdataService.receipts)
-  // }
-
-// clearData(): void {
-//   // clear data
-//   this.receiptdataService.clearData();
-// }
-
-  constructor(private router: Router,private receiptdataService: ReceiptdataService) { }
-
+  //service datapass
   ngOnInit(): void {
+
   }
+
+  cusName: string = "";
+  buyDate: string = "";
+  realDate: string = "";
+  product: string = "";
+  cusComment: string = "";
+  prodPrice: number = 0;
+
+
+  @Output() sendObject = new EventEmitter();
+
+  recieptall!: { cusName: string, buyDate: string, realDate: string, product: string, cusComment: string, prodPrice: number };
+
+
+  sendData(value: any): void {
+    // for (const [key, val] of Object.entries(value)) {
+    //   console.log(`${key}: ${val}`);
+    // }
+    this.receiptdataService.showReceipt(value);
+  }
+
+
+  constructor(private router: Router, private receiptdataService: ReceiptdataService) { }
+
+
 
   today = new Date();
-  maxDate :Date =new Date(2030,12,30);
+  maxDate: Date = new Date(2030, 12, 30);
   receiptform = new FormGroup({
     name: new FormControl("", [Validators.required,
     Validators.pattern('^[a-zA-Z]+ [a-zA-Z]+$')]),
@@ -56,7 +54,7 @@ export class CreateComponent implements OnInit {
     price: new FormControl("", [Validators.required]),
   });
 
-  get name () {
+  get name() {
     return this.receiptform.get('name')
   }
 
@@ -75,9 +73,9 @@ export class CreateComponent implements OnInit {
   get price() {
     return this.receiptform.get('price')
   }
-onSubmit(value:any){}
+  onSubmit(value: any) { }
 
-//service
+  //service
 
 
 }

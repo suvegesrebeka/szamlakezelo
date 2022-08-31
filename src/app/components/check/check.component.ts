@@ -12,24 +12,26 @@ import { Subscription, Observable, Subject } from 'rxjs';
   templateUrl: './check.component.html',
   styleUrls: ['./check.component.css'],
 })
-export class CheckComponent implements OnInit {
+export class CheckComponent {
 
-  subscription: Subscription;
-  receipt: any[] = [];
-
+ 
   constructor(private router: Router, private receiptdataService: ReceiptdataService) {
-
-    // subscribe to create component data
-    this.subscription = this.receiptdataService.getData().subscribe(res => {
-      if (res) {
-        console.log(res)
-        this.receipt.push(res);
-      }
-    });
-  }
-
-
+    this.subscription();
+   }
   ngOnInit(): void {
+    console.log("check oninit");
+
+   
   }
-  // ember: any[] = [1, 'Sós Barka', '1999-12-30', '2000-12-30', 'tétel', 'no komment', 213212]
+
+  receipts:any[]=[];
+  subscription(){
+    this.receiptdataService.behaveiorSubject$.subscribe((res:any)=>{
+      for (const [key, val] of Object.entries(res)) {
+        console.log(`${key}: ${val} + 2. respo`);
+      }
+      this.receipts.push(res)
+      console.log(this.receipts +" thats the array")
+    })
+  }
 }
