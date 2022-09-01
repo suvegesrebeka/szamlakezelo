@@ -20,3 +20,11 @@ p{
 div div div{
     display: inline;
 }
+small{user-select: none;}
+@media screen and (max-width: 660px) {
+    section{
+        width: 100%;
+        height: 100vh;
+        margin:0;
+    }
+}

@@ -1,1 +1,82 @@
-<p>unique works!</p>
+<div>
+    <h2 class="display-6">Részletes adatok:</h2>
+    <form
+      action="POST"
+    >
+    <fieldset disabled>
+      <ul>
+        <li>
+          <label for="cusName" class="form-label">Vásárló neve</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cusName"
+            readonly
+            [value]="cusName"
+          />
+        </li>
+        <li>
+          <label for="date" class="form-label">Kiállítás dátuma</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            readonly
+            [value]="buyDate"
+          />
+        </li>
+        <li>
+          <label for="date" class="form-label">Esedékesség dátuma</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            readonly
+            [value]="realDate"
+          />
+        </li>
+        <li>
+          <label for="item" class="form-label">Tétel neve</label>
+          <input
+            type="text"
+            class="form-control"
+            id="item"
+            readonly
+            [value]="product"
+          />
+        </li>
+        <li>
+          <label for="comment">Komment</label>
+          <textarea
+            class="form-control"
+            id="comment"
+            readonly
+            [value]="cusComment"
+          ></textarea>
+        </li>
+        <li>
+          <label for="price">Ár</label>
+          <span style="width:30%" class="input-group mb-3">
+            <input
+              type="number"
+              min="1"
+              class="form-control"
+              id="price"
+              readonly
+              [value]="prodPrice"
+            />
+            <span class="input-group-text">,-Ft</span>
+          </span>
+        </li>
+      </ul>
+    </fieldset>
+    </form>
+    <button
+    routerLink="../check"
+    class="mx-3 btn btn-outline-danger"
+    readonly
+  >
+    Visszalépés
+  </button>
+  </div>
+  

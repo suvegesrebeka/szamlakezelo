@@ -1,34 +1,27 @@
 <section class="bg-white">
 
-    <h2 class="mb-4"> Belépés </h2>
+    <h2 class="mb-4 display-6"> Belépés </h2>
 
     <form [formGroup]="profileform" #login="ngForm" (ngSubmit)="onSubmit(login.value)">
         <div class="mb-3">
             <label for="username" class="form-label">Felhasználó név</label>
             <input  #userInput  formControlName="user" type="text" class="form-control" id="username" aria-describedby="passwordHelp" required>
-            <div *ngIf=" user!.invalid && (user!.dirty || user!.touched)">
-                <div [ngStyle]="{'color':'red'}" *ngIf="user!.errors?.['required']">
+            <div style="height:3vh">
+                <small [ngStyle]="{'color':( user!.invalid && (user!.dirty || user!.touched))?'red': 'transparent'}" *ngIf="user!.errors?.['required']">
                   A név kötelező
-                </div>
-        </div>
-       
-            <!-- <div [ngStyle]="{'color':'red'}" *ngIf="user!.errors?.['minlength']">
-               nem megfelelő felhasználónév
-            </div> -->
+                </small>
+            </div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Jelszó</label>
             <input  #passwordInput  formControlName="password" type="password" class="form-control" id="password" required>
-            <div *ngIf=" password!.invalid && (password!.dirty || password!.touched)">
-                <div [ngStyle]="{'color':'red'}" *ngIf="password!.errors?.['required']">
+            <div style="height:3vh">
+                <small [ngStyle]="{'color':( password!.invalid && (password!.dirty || password!.touched))?'red': 'transparent'}" *ngIf="password!.errors?.['required']">
                   A jelszó kötelező
-                </div>
-                <!-- <div [ngStyle]="{'color':'red'}" *ngIf="password!.errors?.['pattern']">
-                    nem megfelelő jelszó
-                </div> -->
+                </small>
             </div>
         </div>
-        <button (click)="goLogin(login.value)" [disabled]="password!.errors?.['required'] || user!.errors?.['required']"  type="submit" class="btn btn-primary">Belépés</button>
+        <button  [disabled]="password!.errors?.['required'] || user!.errors?.['required']"  type="submit" class="btn btn-primary">Belépés</button>
         <!-- <p>vagy regisztrálj be</p> -->
         <button  (click)="toRegisteration()" class="btn btn-link">vagy <strong>regisztrálj</strong> be</button>
        <div *ngIf="try == 3">

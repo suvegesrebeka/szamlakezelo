@@ -23,8 +23,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UniqueComponent } from './components/unique/unique.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
-import {  RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ReceiptdataService } from './receiptdata.service';
+import { ProfiledataService } from './profiledata.service';
+import { RegistrationService } from './registration.service';
+import { UniquedataService } from './uniquedata.service';
 
 
 
@@ -58,7 +61,7 @@ import { ReceiptdataService } from './receiptdata.service';
     NgxCaptchaModule,
     RouterModule
   ],
-  providers: [ReceiptdataService],
+  providers: [ReceiptdataService,ProfiledataService,RegistrationService,UniquedataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

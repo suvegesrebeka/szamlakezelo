@@ -1,72 +1,133 @@
 <div>
   <h2 class="display-6">Állítson elő számlát:</h2>
-  <form [formGroup]="receiptform" #save="ngForm" (ngSubmit)="onSubmit(save.value)" action="POST">
+  <form
+    [formGroup]="receiptform"
+    #save="ngForm"
+    (ngSubmit)="onSubmit(save.value)"
+    action="POST"
+  >
     <ul>
       <li>
         <label for="cusName" class="form-label">Vásárló neve</label>
-        <input formControlName="name" type="text" class="form-control" id="cusName" #nameval>
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          id="cusName"
+          [(ngModel)]="cusName"
+          placeholder="Teljes név"
+        />
       </li>
-      <span *ngIf=" name!.invalid && (name!.dirty || name!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="name!.errors?.['required']">
-          A név kötelező!
-        </span>
-        <span [ngStyle]="{'color':'red'}" *ngIf="name!.errors?.['pattern']">
-          Hibás formmátum!
-        </span>
-      </span>
+      <div style="height:3vh;">
+        <small [ngStyle]="{'display':( name!.invalid && (name!.dirty || name!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="name!.errors?.['required']">
+          A név kötelező
+        </small>
+        <small [ngStyle]="{'color':( name!.invalid && (name!.dirty || name!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="name!.errors?.['pattern']">
+          Hibás formátum!
+        </small>
+    </div>
       <li>
         <label for="date" class="form-label">Kiállítás dátuma</label>
-        <input formControlName="date" [max]="maxDate" type="date" class="form-control" id="date">
+        <input
+          formControlName="date"
+          [max]="maxDate"
+          type="date"
+          class="form-control"
+          id="date"
+          [(ngModel)]="buyDate"
+        />
       </li>
-      <span *ngIf=" date!.invalid && (date!.dirty || date!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="date!.errors?.['required']">
-          A dátum kötelező!
-        </span>
-      </span>
+      <div style="height:3vh;">
+        <small [ngStyle]="{'color':( date!.invalid && (date!.dirty || date!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="date!.errors?.['required']">
+          A dátum kötelező
+        </small>
+    </div>
       <li>
         <label for="date" class="form-label">Esedékesség dátuma</label>
-        <input formControlName="date2" type="date" class="form-control" id="date">
+        <input
+          formControlName="date2"
+          type="date"
+          class="form-control"
+          id="date"
+          [(ngModel)]="realDate"
+        />
       </li>
-      <span *ngIf=" date2!.invalid && (date2!.dirty || date2!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="date2!.errors?.['required']">
-          A dátum kötelező!
-        </span>
-      </span>
+      <div style="height:3vh;">
+        <small [ngStyle]="{'color':( date2!.invalid && (date2!.dirty || date2!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="date2!.errors?.['required']">
+          A dátum kötelező
+        </small>
+    </div>
       <li>
         <label for="item" class="form-label">Tétel neve</label>
-        <input formControlName="item" type="text" class="form-control" id="item">
+        <input
+          formControlName="item"
+          type="text"
+          class="form-control"
+          id="item"
+          [(ngModel)]="product"
+          placeholder="tétel"
+        />
       </li>
-      <span *ngIf=" item!.invalid && (item!.dirty || item!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="item!.errors?.['required']">
-          A tétel kötelező!
-        </span>
-      </span>
+      <div style="height:3vh;">
+        <small [ngStyle]="{'color':( item!.invalid && (item!.dirty || item!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="item!.errors?.['required']">
+          A tétel kötelező
+        </small>
+    </div>
       <li>
         <label for="comment">Komment</label>
-        <textarea formControlName="comment" class="form-control" id="comment"></textarea>
+        <textarea
+          formControlName="comment"
+          class="form-control"
+          id="comment"
+          [(ngModel)]="cusComment"
+          placeholder="Leírás..."
+        ></textarea>
       </li>
-      <span *ngIf=" comment!.invalid && (comment!.dirty || comment!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="comment!.errors?.['required']">
-          Kötelező kommentelni!
-        </span>
-      </span>
+      <div style="height:3vh;">
+        <small [ngStyle]="{'color':( comment!.invalid && (comment!.dirty || comment!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="comment!.errors?.['required']">
+         Kötelező kommentet írni!
+        </small>
+    </div>
       <li>
         <label for="price">Ár</label>
-        <span style="width:30%" class="input-group mb-3">
-          <input formControlName="price" type="number" min=1 class="form-control" id="price">
+        <span id="priceSpan" class="input-group mb-3">
+          <input
+            formControlName="price"
+            type="number"
+            min="1"
+            class="form-control"
+            id="price"
+            [(ngModel)]="prodPrice"
+          />
           <span class="input-group-text">,-Ft</span>
         </span>
       </li>
-      <span *ngIf=" price!.invalid && (price!.dirty || price!.touched)">
-        <span [ngStyle]="{'color':'red'}" *ngIf="price!.errors?.['required']">
-          Az árkötelező!
-        </span>
-
-      </span>
-      <button (click)="sendData(save.value)" [disabled]="!receiptform.valid" type="submit"
-        class=" btn btn-outline-success">Mentés</button>
-      <button routerLink="../subscription" class="mx-3 btn btn-outline-secondary">Visszalépés</button>
-
+      <div style="height:4vh;">
+        <small [ngStyle]="{'color':( price!.invalid && (price!.dirty || price!.touched)&&!save.submitted)?'red': 'transparent'}" *ngIf="price!.errors?.['required']">
+         Ár megadása kötelező, csak számot adhat meg!
+        </small>
+    </div>
+    <div id="buttons">
+      <button
+        [disabled]="!receiptform.valid"
+        type="submit"
+        class="btn btn-outline-success"
+      >
+        Mentés
+      </button>
+      <button
+        routerLink="../subscription"
+        class=" btn btn-outline-secondary"
+      >
+        Visszalépés
+      </button>
+      <button
+      routerLink="../check"
+      class=" btn btn-outline-secondary"
+    >
+      Meglévő számlák
+    </button>
+  </div>
     </ul>
   </form>
 </div>

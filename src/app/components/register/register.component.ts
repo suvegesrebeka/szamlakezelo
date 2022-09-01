@@ -3,7 +3,8 @@ import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
-import { ReceiptdataService } from 'src/app/receiptdata.service';
+
+import { RegistrationService } from 'src/app/registration.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,9 @@ import { ReceiptdataService } from 'src/app/receiptdata.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private route: Router,private receiptdata: ReceiptdataService) { }
+  constructor(private route: Router,
+    private registrationService: RegistrationService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -22,17 +25,18 @@ export class RegisterComponent implements OnInit {
   registerform = new FormGroup({
     password: new FormControl("", [
       Validators.required,
-      Validators.minLength(8)
+      Validators.minLength(8),
+      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')//min 8 char 1 betu szam specchar
      ]),
      fullname: new FormControl("", [
       Validators.required,
       // Validators.minLength(3),
-      Validators.pattern('^[a-zA-Z]+ [a-zA-Z]+$')//pattern nem mukodott
+      Validators.pattern('^[a-zA-Z]+ [a-zA-Z]+$')
     ]),
     username: new FormControl("", [
       Validators.required,
       Validators.minLength(3),
-      Validators.pattern('^[a-zA-Z0-9]+$')//pattern nem mukodott
+      Validators.pattern('^[a-zA-Z0-9]+$')
     ]),
   });
   
@@ -46,6 +50,7 @@ export class RegisterComponent implements OnInit {
     return this.registerform.get('password')
   }
   
-  onSubmit(login:any) {}
-  getValue(login:any) {}
+  onSubmit(login:any) {
+    this.registrationService.getData(login)
+  }
 }

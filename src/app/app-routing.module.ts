@@ -7,6 +7,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
 import { CreateComponent } from './components/create/create.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CheckComponent } from './components/check/check.component';
+import { UniqueComponent } from './components/unique/unique.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
     {path: 'subscription', component: SubscriptionComponent},
     {path: 'create', component: CreateComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'check', component: CheckComponent}
+    {path: 'check', component: CheckComponent},
+    {path: 'unique', component: UniqueComponent}
   ]}
   
 ];

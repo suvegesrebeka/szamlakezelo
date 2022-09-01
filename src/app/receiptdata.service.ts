@@ -2,24 +2,26 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { Subscription, Observable, BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReceiptdataService {
-
-
-  private sourceBehav = new BehaviorSubject<any>(null);
+  private sourceBehav = new BehaviorSubject<any>([]);
   public behaveiorSubject$ = this.sourceBehav.asObservable();
-  
+  constructor() {}
+
+  receipts: any = [];
+
   showReceipt(value: any) {
-    this.sourceBehav.next(value)
+    this.sourceBehav.next(value);
   }
 
-  constructor() {
+  addNew(data: any) {
+    const value = this.sourceBehav.getValue();
+    value.push(data);
+    this.sourceBehav.next(value);
   }
 
- 
-  
-
-
-
+  getData() {
+    return this.behaveiorSubject$;
+  }
 }
