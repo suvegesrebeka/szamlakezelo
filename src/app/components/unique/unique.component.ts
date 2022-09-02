@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UniquedataService} from 'src/app/uniquedata.service';
+import { UniquedataService } from 'src/app/uniquedata.service';
 
 @Component({
   selector: 'app-unique',
@@ -8,6 +8,8 @@ import { UniquedataService} from 'src/app/uniquedata.service';
   styleUrls: ['./unique.component.css']
 })
 export class UniqueComponent implements OnInit {
+
+  //számla adatok
   cusName: string = '';
   buyDate: string = '';
   realDate: string = '';
@@ -15,23 +17,22 @@ export class UniqueComponent implements OnInit {
   cusComment: string = '';
   prodPrice: number = NaN;
 
-  constructor(private router:Router,private uniquedataService:UniquedataService) { }
+  constructor(private router: Router, private uniquedataService: UniquedataService) { }
 
   ngOnInit(): void {
     this.subscription();
   }
-  subscription(){
-    this.uniquedataService.behaveSubject$.subscribe((res:any)=>{
-      for(let [key,val] of Object.entries(res)){
-        console.log(`${key}:${val}`)
-    }
 
-     this.cusName=res.cusName;
-     this.buyDate=res.buyDate;
-     this.realDate=res.realDate;
-     this.product=res.product;
-     this.cusComment=res.cusComment;
-     this.prodPrice=res.prodPrice;
+  //adott számlára kattintott adatokra feliratkozás
+  subscription() {
+    this.uniquedataService.behaveSubject$.subscribe((res: any) => {
+
+      this.cusName = res.cusName;
+      this.buyDate = res.buyDate;
+      this.realDate = res.realDate;
+      this.product = res.product;
+      this.cusComment = res.cusComment;
+      this.prodPrice = res.prodPrice;
     })
   }
 }

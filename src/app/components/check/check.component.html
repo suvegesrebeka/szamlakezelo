@@ -11,14 +11,16 @@
   </tr>
 
   <tr></tr>
-  <tr style="cursor:pointer" (click)="onClick(item.cusName,item.buyDate,item.realDate,item.product,item.cusComment,item.prodPrice)" routerLink="../unique" *ngFor="let item of receiptObservable$ | async;let i =index">
-        <td>{{ i+1}}</td>
-        <td>{{ item.cusName }}</td>
-        <td>{{ item.buyDate }}</td>
-        <td>{{ item.realDate }}</td>
-        <td>{{ item.product }}</td>
-        <td>{{ item.cusComment }}</td>
-        <td>{{ item.prodPrice }}</td>
+  <tr style="cursor:pointer"
+    (click)="onClick(item.cusName,item.buyDate,item.realDate,item.product,item.cusComment,item.prodPrice)"
+    routerLink="../unique" *ngFor="let item of receiptObservable$ | async;let i =index">
+    <td>{{ i+1}}</td>
+    <td>{{ item.cusName }}</td>
+    <td>{{ item.buyDate }}</td>
+    <td>{{ item.realDate }}</td>
+    <td>{{ item.product }}</td>
+    <td>{{ item.cusComment }}</td>
+    <td>{{ item.prodPrice }}</td>
   </tr>
 </table>
 <button routerLink="../create" class="btn btn-outline-danger">

@@ -5,9 +5,11 @@ import { Subscription, Observable, BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ReceiptdataService {
+  
+  //számla adatok továbbítása a táblába
   private sourceBehav = new BehaviorSubject<any>([]);
   public behaveiorSubject$ = this.sourceBehav.asObservable();
-  constructor() {}
+  constructor() { }
 
   receipts: any = [];
 

@@ -6,11 +6,12 @@ import { Subscription, Observable, BehaviorSubject, Subject } from 'rxjs';
 })
 export class ProfiledataService {
 
+  //belépési adatok továbbítása a profile-nak
   private loggingData = new BehaviorSubject<any>(null);
   public behaveiorSubject$ = this.loggingData.asObservable();
- 
-  
-  showReceipt(value:any) {
+
+
+  showReceipt(value: any) {
     this.loggingData.next(value)
   }
   constructor() { }

@@ -1,11 +1,26 @@
-*{margin:0;padding:0;box-sizing:border-box}
-body,html{  height: fit-content;}
-body{background-color:transparent}
-small{user-select: none;}
-@media screen and (max-width: 660px) {
-   body{
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
 
-        height: 100%;
-       
-    }
+body,
+html {
+  height: fit-content;
+}
+
+body {
+  background-color: transparent
+}
+
+small {
+  user-select: none;
+}
+
+@media screen and (max-width: 660px) {
+  body {
+
+    height: 100%;
+
+  }
 }

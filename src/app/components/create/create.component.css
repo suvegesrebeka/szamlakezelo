@@ -1,45 +1,54 @@
-ul{
-    list-style: circle;
-}
-div:nth-child(1){
-    width:60%;
-    margin:0 auto 0 auto;
-    border: 0.5px solid rgb(213, 213, 213);
-    padding:2%;
-    max-height:50%;
-}
-label{
-    margin:1.3%;
-}
-#buttons{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-small{user-select: none;}
-@media screen and (max-width:660px) {
-    div:nth-child(1){
-        width:100%;
-        margin:0 ;
-    }
-    #buttons{
-        flex-direction: column;
-        height: 40vh;
-    }
-    button{
-        width: 50%;
-        height: 10vh;
-    }
-    input{
-        height: 10vh;
-    }
-    
-    ul{
-        list-style:none;
-        padding:0;
-    }
- 
+ul {
+  list-style: circle;
 }
 
+div:nth-child(1) {
+  width: 60%;
+  margin: 0 auto 0 auto;
+  border: 0.5px solid rgb(213, 213, 213);
+  padding: 2%;
+  max-height: 50%;
+}
+
+label {
+  margin: 1.3%;
+}
+
+#buttons {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+small {
+  user-select: none;
+}
+
+@media screen and (max-width:660px) {
+  div:nth-child(1) {
+    width: 100%;
+    margin: 0;
+  }
+
+  #buttons {
+    flex-direction: column;
+    height: 40vh;
+  }
+
+  button {
+    width: 50%;
+    height: 10vh;
+  }
+
+  input {
+    height: 10vh;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+}
