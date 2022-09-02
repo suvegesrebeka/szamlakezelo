@@ -1,30 +1,37 @@
-
-section{
-    margin: 3% 25% 0 25%;
-    padding: 4%;
-}
-form,section{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-}
-button{
-    margin-top: 3%;
-}
-p{
-    text-align: center;
-    margin-top: 3%;
+section {
+  position: absolute;
+  left: 30%;
+  top: 5%;
+  width: 40%;
+  padding: 4%;
 }
 
-div div div{
-    display: inline;
+form,
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-small{user-select: none;}
+
+p {
+  text-align: center;
+}
+
+div div div {
+  display: inline;
+
+}
+
+small {
+  user-select: none;
+}
+
 @media screen and (max-width: 660px) {
-    section{
-        width: 100%;
-        height: 100vh;
-        margin:0;
-    }
+  section {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: static;
+  }
 }

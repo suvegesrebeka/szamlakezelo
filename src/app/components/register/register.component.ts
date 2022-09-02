@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 import { RegistrationService } from 'src/app/registration.service';
 
@@ -13,25 +12,27 @@ import { RegistrationService } from 'src/app/registration.service';
 })
 export class RegisterComponent implements OnInit {
 
+
   constructor(private route: Router,
     private registrationService: RegistrationService
-    ) { }
-
+  ) { }
   ngOnInit(): void {
   }
-  toLogin(){
+  
+  //átnavigál a bejelentkezése
+  toLogin() {
     this.route.navigate(['/']);
   }
+  //form validáció
   registerform = new FormGroup({
     password: new FormControl("", [
       Validators.required,
       Validators.minLength(8),
-      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')//min 8 char 1 betu szam specchar
-     ]),
-     fullname: new FormControl("", [
+      Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$')
+    ]),
+    fullname: new FormControl("", [
       Validators.required,
-      // Validators.minLength(3),
-      Validators.pattern('^[a-zA-Z]+ [a-zA-Z]+$')
+      Validators.pattern('^[a-zA-ZöüóőúűáéíÖÜÓŐÚŰÉÁÍ]+ [a-zA-ZöüóőúűáéíÖÜÓŐÚŰÉÁÍ]+$')
     ]),
     username: new FormControl("", [
       Validators.required,
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
       Validators.pattern('^[a-zA-Z0-9]+$')
     ]),
   });
-  
+
   get fullname() {
     return this.registerform.get('fullname')
   }
@@ -49,8 +50,30 @@ export class RegisterComponent implements OnInit {
   get password() {
     return this.registerform.get('password')
   }
-  
-  onSubmit(login:any) {
-    this.registrationService.getData(login)
+  // form küldésekor megvizsgálja a servicében, hogy létezik-e már a felhasználó
+  onSubmit(login: any) {
+
+    if (this.registrationService.getData(login)) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'A felhasználó már létezik!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } else {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Sikeres Regisztráció',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log('name: ' + login.name + ' username: ' + login.username + ' pw: ' + login.password);
+      this.toLogin();
+      this.registrationService.takeUserToLoginPage(login);
+    }
   }
 }
+
+

@@ -1,49 +1,57 @@
 <section class="bg-white">
 
-    <h2 class="mb-4 display-6"> Regisztráció </h2>
+  <h2 class="mb-4 display-6"> Regisztráció </h2>
 
-    <form  [formGroup]="registerform" #register="ngForm" (ngSubmit)="onSubmit(register.value)">
-        <div class="mb-3">
-            <label for="fullname" class="form-label">Teljes név</label>
-            <input  #fullnameInput  formControlName="fullname" type="email" class="form-control" id="fullname" aria-describedby="emailHelp">
-        </div>
-        <div style="height:3vh">
-            <small [ngStyle]="{'color':( fullname!.invalid && (fullname!.dirty || fullname!.touched))?'red': 'transparent'}" *ngIf="fullname!.errors?.['required']">
-              A név kötelező
-            </small>
-            <small [ngStyle]="{'color':( fullname!.invalid && (fullname!.dirty || fullname!.touched))?'red': 'transparent'}" *ngIf="fullname!.errors?.['pattern']">
-                nem megfelelő név
-            </small>
-        </div>
-        <div class="mb-3">
-            <label for="username" class="form-label">Felhasználónév</label>
-            <input #usernameInput  formControlName="username" type="email" class="form-control" id="username" aria-describedby="emailHelp">
-        </div>
-        <div style="height:3vh">
-            <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}" *ngIf="username!.errors?.['required']">
-              A felhasználónév kötelező
-            </small>
-            <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}" *ngIf="username!.errors?.['minlength']">
-               túl rövid felhasználónév
-            </small>
-            <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}" *ngIf="username!.errors?.['pattern']">
-                nem megfelelő felhasználónév
-            </small>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Jelszó</label>
-            <input #passwordInput  formControlName="password" type="password" class="form-control" id="password">
-        </div>
-        <div style="height:5vh;padding-bottom:1vh">
-            <small [ngStyle]="{'color':( password!.invalid && (password!.dirty || password!.touched))?'red': 'transparent'}" *ngIf="password!.errors?.['required']">
-              A jelszó kötelező
-            </small>
-            <small [ngStyle]="{'color':( password!.invalid && (password!.dirty || password!.touched))?'red': 'transparent'}" *ngIf="password!.errors?.['pattern']">
-            8 kar. hosszú, egy kis- és nagybetű, szám, spec.karakter!
-            </small>
-        </div>
-        <button [disabled]="!registerform.valid" type="submit" class="btn btn-primary">Regisztráció</button>
-        <!-- <p>vagy regisztrálj be</p> -->
-        <button (click)="toLogin()" class="btn btn-link">Vissza a <strong>belépéshez</strong></button>
-    </form>
+  <form [formGroup]="registerform" #register="ngForm" (ngSubmit)="onSubmit(register.value)">
+    <div class="mb-3">
+      <label for="fullname" class="form-label">Teljes név</label>
+      <input #fullnameInput formControlName="fullname" type="email" class="form-control" id="fullname"
+        aria-describedby="emailHelp">
+    </div>
+    <div style="height:3vh">
+      <small [ngStyle]="{'color':( fullname!.invalid && (fullname!.dirty || fullname!.touched))?'red': 'transparent'}"
+        *ngIf="fullname!.errors?.['required']">
+        A név kötelező
+      </small>
+      <small [ngStyle]="{'color':( fullname!.invalid && (fullname!.dirty || fullname!.touched))?'red': 'transparent'}"
+        *ngIf="fullname!.errors?.['pattern']">
+        Nem megfelelő név
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Felhasználónév</label>
+      <input #usernameInput formControlName="username" type="email" class="form-control" id="username"
+        aria-describedby="emailHelp">
+    </div>
+    <div style="height:3vh">
+      <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}"
+        *ngIf="username!.errors?.['required']">
+        A felhasználónév kötelező
+      </small>
+      <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}"
+        *ngIf="username!.errors?.['minlength']">
+        Túl rövid felhasználónév
+      </small>
+      <small [ngStyle]="{'color':( username!.invalid && (username!.dirty || username!.touched))?'red': 'transparent'}"
+        *ngIf="username!.errors?.['pattern']">
+        Nem megfelelő felhasználónév
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Jelszó</label>
+      <input #passwordInput formControlName="password" type="password" class="form-control" id="password">
+    </div>
+    <div style="height:5vh;padding-bottom:1vh">
+      <small [ngStyle]="{'color':( password!.invalid && (password!.dirty || password!.touched))?'red': 'transparent'}"
+        *ngIf="password!.errors?.['required']">
+        A jelszó kötelező
+      </small>
+      <small [ngStyle]="{'color':( password!.invalid && (password!.dirty || password!.touched))?'red': 'transparent'}"
+        *ngIf="password!.errors?.['pattern']">
+        8 kar. hosszú, egy kis- és nagybetű, szám!
+      </small>
+    </div>
+    <button [disabled]="!registerform.valid" type="submit" class="btn btn-primary">Regisztráció</button>
+    <button (click)="toLogin()" class="btn btn-link">Vissza a <strong>belépéshez</strong></button>
+  </form>
 </section>

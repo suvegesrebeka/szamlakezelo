@@ -5,13 +5,15 @@ import { Subscription, Observable, BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UniquedataService {
+
+  //táblából az egyedi számla megnyitására érkező értékek
   private receiptData = new BehaviorSubject<any>([]);
   public behaveSubject$ = this.receiptData.asObservable();
 
   constructor() { }
-  addDetails(value:any){
-    for(let [key,val] of Object.entries(value)){
-        console.log(`${key}:${val}`)
+  addDetails(value: any) {
+    for (let [key, val] of Object.entries(value)) {
+      console.log(`${key}:${val}`)
     }
     this.receiptData.next(value)
   }

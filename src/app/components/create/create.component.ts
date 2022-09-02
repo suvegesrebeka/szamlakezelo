@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import {FormGroup,FormControl,Validators,FormBuilder,} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, Observable, Subject } from 'rxjs';
 import { ReceiptdataService } from '../../receiptdata.service';
@@ -23,6 +16,7 @@ import Swal from 'sweetalert2'
 })
 export class CreateComponent implements OnInit {
 
+  //számla adatai
   cusName: string = '';
   buyDate: string = '';
   realDate: string = '';
@@ -30,31 +24,18 @@ export class CreateComponent implements OnInit {
   cusComment: string = '';
   prodPrice: number = NaN;
 
-  errorMessage:boolean=true;
+  today = new Date();
+  maxDate: Date = this.today
 
-  // my first try
-
-  // inputData(){
-  //   this.receiptdataService.addNewReceipt(this.cusName, this.buyDate, this.realDate, this.product, this.cusComment, this.prodPrice)
-  //   console.log(this.receiptdataService.receipts)
-  // }
-
-  // clearData(): void {
-  //   // clear data
-  //   this.receiptdataService.clearData();
-  // }
 
   constructor(
     private router: Router,
     private receiptdataService: ReceiptdataService
-  ) {}
+  ) { }
 
-  ngOnInit(): void { 
-    this.errorMessage = true;
-  }
-
-  today = new Date();
-  maxDate: Date = new Date(2030, 12, 30);
+  ngOnInit(): void {}
+  
+  //form validáció
   receiptform = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -96,6 +77,7 @@ export class CreateComponent implements OnInit {
       cusComment: this.cusComment,
       prodPrice: this.prodPrice,
     });
+
     // reset
     this.cusName = '';
     this.buyDate = '';
@@ -103,7 +85,7 @@ export class CreateComponent implements OnInit {
     this.product = '';
     this.cusComment = '';
     this.prodPrice = NaN;
-    this.errorMessage= false;
+    //üzenet
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -113,5 +95,4 @@ export class CreateComponent implements OnInit {
     })
   }
 
-  //service
 }
