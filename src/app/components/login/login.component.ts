@@ -19,12 +19,7 @@ export class LoginComponent implements OnInit {
   //captcha apikey
   siteKey: string = "6Leux7ghAAAAANqgR3Ojh1k82lIPuUYHysL9oD9Q";
   try: number = 0;
-
-  day = new Date().getDate()
-  year = new Date().getFullYear()
-  hour: any = new Date().getHours()
-  minute: any = new Date().getMinutes()
-  month = Number(new Date().getMonth()) + 1
+  
 
   //a felhasználó már létezik hibaüzenet
   userNameExistError: boolean = false;
@@ -61,13 +56,14 @@ export class LoginComponent implements OnInit {
   onSubmit(login: any) {
     this.try++
     //idő beállítása a profile componentre
-    if (this.hour < 10) {
-      this.hour = "0" + this.hour
-    }
-    if (this.minute < 10) {
-      this.minute = "0" + this.minute
-    }
-    let currentDate = this.year + '/' + this.month + '/' + this.day + " " + this.hour + ':' + this.minute;
+    var date = new Date();
+    var day = date.getDate()
+    var year = date.getFullYear()
+    var hour = ("0" + date.getHours()).slice(-2);
+    var minute = ("0" + date.getMinutes()).slice(-2);
+    var month = Number(date.getMonth()) + 1
+
+    let currentDate = year + '/' + month + '/' + day + " " + hour + ':' + minute;
     let value = [login, currentDate];
     this.profiledataService.showReceipt(value);
     this.notRegisteredError = false;
