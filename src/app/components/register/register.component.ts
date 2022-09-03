@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
     password: new FormControl("", [
       Validators.required,
       Validators.minLength(8),
-      Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$')
+      Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,32})$')
     ]),
     fullname: new FormControl("", [
       Validators.required,
-      Validators.pattern('^[a-zA-ZöüóőúűáéíÖÜÓŐÚŰÉÁÍ]+ [a-zA-ZöüóőúűáéíÖÜÓŐÚŰÉÁÍ]+$')
+      Validators.pattern('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,\.\'-]+ [a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,\.\'-]+$')
     ]),
     username: new FormControl("", [
       Validators.required,
